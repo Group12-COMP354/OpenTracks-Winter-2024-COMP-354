@@ -251,10 +251,25 @@
     <string name="voice_announce_lap_speed_pace_key" translatable="false">voiceAnnounceLapSpeedPace</string>
     <bool name="voice_announce_lap_speed_pace_default" translatable="false">true</bool>
 
+    <string name="voice_announce_max_speed_pace_key" translatable="false">voiceAnnounceAverageSlope</string>
+    <bool name="voice_announce_max_speed_pace_default" translatable="false">false</bool>
+
     <string name="voice_announce_average_heart_rate_key" translatable="false">voiceAnnounceAverageHeartRate</string>
     <bool name="voice_announce_average_heart_rate_default" translatable="false">false</bool>
     <string name="voice_announce_lap_heart_rate_key" translatable="false">voiceAnnounceLapHeartRate</string>
     <bool name="voice_announce_lap_heart_rate_default" translatable="false">false</bool>
+
+    <string name="voice_announce_average_slope_key" translatable="false">voiceAnnounceAverageSlope</string>
+    <bool name="voice_announce_average_slope_default" translatable="false">true</bool>
+    <string name="voice_announce_max_slope_key" translatable="false">voiceAnnounceMaxSlope</string>
+    <bool name="voice_announce_max_slope_default" translatable="false">false</bool>
+    <string name="voice_announce_total_time_skiing_key" translatable="false">voiceAnnounceTotalTimeSkiing</string>
+    <bool name="voice_announce_total_time_skiing_default" translatable="false">true</bool>
+    <string name="voice_announce_total_time_waiting_key" translatable="false">voiceAnnounceTotalTimeWaiting</string>
+    <bool name="voice_announce_total_time_waiting_default" translatable="false">false</bool>
+
+    <string name="voice_announce_local_temperature_key" translatable="false">voiceAnnounceLocalTemperature</string>
+    <bool name="voice_announce_local_temperature_default" translatable="false">false</bool>
 
     <string name="export_trackfileformat_key" translatable="false">exportTrackFileFormat</string>
     <!-- See TrackFileFormat -->
