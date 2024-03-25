@@ -61,6 +61,8 @@ public class TTSManager extends AppCompatActivity {
     //AudioManager Class  : Manage audio focus on the device (audio playback & recording)
     private final AudioManager audioManager;
 
+    FloatingActionButton run;
+
     //AudioManager.OnAudioFocusChangeListener : Interface in Android SDK
     // Monitors audio focus change and returns a LOG of the change
 
@@ -170,12 +172,17 @@ public class TTSManager extends AppCompatActivity {
         synchronized (this) { // One announcement at a time
 
             if (!ttsReady) { // checking if ready to make an announcement
-                ttsReady = ttsInitStatus == TextToSpeech.SUCCESS;
+                //ttsReady = ttsInitStatus == TextToSpeech.SUCCESS;
+                Log.d(TAG, "Inside ttsReady false");
+                ttsReady = true;
+                Log.d(TAG, String.valueOf(ttsReady));
                 ;
-                Log.d(TAG, "TTS initialized successfully.");
+                //Log.d(TAG, "TTS initialized successfully.");
                 // Update the UI to indicate that TTS is ready.
                 if (ttsReady) {
-                    onTtsReady();
+                    Log.d(TAG, "Inside ttsReady true");
+//                    onCreate(null);
+                    onTtsReady(run);
                 }
             }
         }
@@ -239,25 +246,32 @@ public class TTSManager extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.track_recording);
+        run = findViewById(R.id.track_recording_fab_action);
         // Call onTtsReady for initialization
-        onTtsReady();
+        onTtsReady(run);
     }
 
-    void onTtsReady() {
+    void onTtsReady(FloatingActionButton run) {
+        Log.i(TAG, "Inside onItsReady()");
         //        setContentView(R.layout.track_stopped);
         //        ImageView finish = findViewById(R.id.finish_button);
 
 
 // Set the content view of the activity to the layout defined in 'track_recording.xml'
-        setContentView(R.layout.track_recording);
+        //setContentView(R.layout.track_recording);
+        Log.i(TAG, "Inside onItsReady()2");
         // Find the FloatingActionButton with the id 'track_recording_fab_action' in the layout
-        FloatingActionButton run = findViewById(R.id.track_recording_fab_action);
+        //FloatingActionButton run = findViewById(R.id.track_recording_fab_action);
+        Log.i(TAG, "Inside onItsReady()3");
+        Log.i(TAG, String.valueOf(run));
 
         if (run != null) {
             // Initialize TextToSpeech instance with the application context
             tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                 @Override
                 public void onInit(int ttsInitStatus) {
+                    Log.i(TAG, "Inside onInit()");
                     // Get the default locale of the device
                     Locale locale = Locale.getDefault();
                     int languageAvailability = tts.isLanguageAvailable(locale);
