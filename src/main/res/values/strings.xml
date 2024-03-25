@@ -411,6 +411,12 @@ limitations under the License.
     <string name="settings_announcements_lap_heart_rate">Lap heart rate</string>
     <string name="settings_announcements_average_speed_pace">Average speed/pace</string>
     <string name="settings_announcements_lap_speed_pace">Lap speed/pace</string>
+    <string name="settings_announcements_max_speed_pace">Max speed/pace</string>
+    <string name="settings_announcements_average_slope">Average slope</string>
+    <string name="settings_announcements_max_slope">Max slope</string>
+    <string name="settings_announcements_total_time_skiing">Total time skiing</string>
+    <string name="settings_announcements_total_time_waiting">Total time waiting</string>
+    <string name="settings_announcements_temperature">Temperature</string>
 
     <!-- Custom Layout -->
 
