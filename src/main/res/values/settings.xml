@@ -263,10 +263,10 @@
     <bool name="voice_announce_average_slope_default" translatable="false">true</bool>
     <string name="voice_announce_max_slope_key" translatable="false">voiceAnnounceMaxSlope</string>
     <bool name="voice_announce_max_slope_default" translatable="false">false</bool>
-    <string name="voice_announce_total_time_skiing_key" translatable="false">voiceAnnounceTotalTimeSkiing</string>
-    <bool name="voice_announce_total_time_skiing_default" translatable="false">true</bool>
-    <string name="voice_announce_total_time_waiting_key" translatable="false">voiceAnnounceTotalTimeWaiting</string>
-    <bool name="voice_announce_total_time_waiting_default" translatable="false">false</bool>
+    <string name="voice_announce_total_skiing_time_key" translatable="false">voiceAnnounceTotalSkiingTime</string>
+    <bool name="voice_announce_total_skiing_time_default" translatable="false">true</bool>
+    <string name="voice_announce_total_waiting_time_key" translatable="false">voiceAnnounceTotalWaitingTime</string>
+    <bool name="voice_announce_total_waiting_time_default" translatable="false">false</bool>
 
     <string name="voice_announce_local_temperature_key" translatable="false">voiceAnnounceLocalTemperature</string>
     <bool name="voice_announce_local_temperature_default" translatable="false">false</bool>

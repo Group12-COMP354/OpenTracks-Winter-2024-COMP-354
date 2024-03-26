@@ -414,8 +414,8 @@ limitations under the License.
     <string name="settings_announcements_max_speed_pace">Max speed/pace</string>
     <string name="settings_announcements_average_slope">Average slope</string>
     <string name="settings_announcements_max_slope">Max slope</string>
-    <string name="settings_announcements_total_time_skiing">Total time skiing</string>
-    <string name="settings_announcements_total_time_waiting">Total time waiting</string>
+    <string name="settings_announcements_total_skiing_time">Total skiing time</string>
+    <string name="settings_announcements_total_waiting_time">Total waiting time</string>
     <string name="settings_announcements_temperature">Temperature</string>
 
     <!-- Custom Layout -->
@@ -614,6 +614,7 @@ limitations under the License.
     <string name="pace">Pace</string>
     <string name="lap_speed">Lap speed</string>
     <string name="speed">Average moving speed</string>
+    <string name="max_speed">Max speed</string>
     <string name="total_distance">Total distance</string>
     <string name="voiceDistanceKilometersPlural">
         {n, plural,
@@ -635,6 +636,13 @@ limitations under the License.
     </string>
     <string name="average_heart_rate">Average heart rate</string>
     <string name="current_heart_rate">Current heart rate</string>
+    <string name="slope">Average slope</string>
+    <string name="max_slope">Max slope</string>
+    <string name="voiceSlopePercentage">
+        {n,number,percent}
+    </string>
+    <string name="waiting_time">Total waiting time</string>
+    <string name="skiing_time">Total skiing time</string>
     <!-- Waypoint Type -->
     <string name="waypoint_type_atm">ATM</string>
     <string name="waypoint_type_bank">bank</string>
