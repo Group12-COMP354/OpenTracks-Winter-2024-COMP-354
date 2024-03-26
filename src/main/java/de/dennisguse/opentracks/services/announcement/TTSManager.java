@@ -24,6 +24,7 @@ import android.speech.tts.TextToSpeech; // Convert text to speech
 import android.speech.tts.UtteranceProgressListener; // Used to receive callbacks when the synthesis of an utterance starts/end or at an error
 import android.text.Spannable; //Mark up text with style information
 import android.util.Log; // Provides methods to log messages (debugging purposes)
+import android.widget.Toast;
 
 import androidx.annotation.NonNull; // Provides helper classes
 
@@ -195,25 +196,27 @@ public class TTSManager {
     }
 
     private void onTtsReady() {
-        Locale locale = Locale.getDefault(); // Get default geolocation / region etc
-        int languageAvailability = tts.isLanguageAvailable(locale); //Method in the TTS class :
-        // checks is the engine can speak specified language
+        Locale locale = Locale.getDefault();
+        int languageAvailability = tts.isLanguageAvailable(locale);
         if (languageAvailability == TextToSpeech.LANG_MISSING_DATA || languageAvailability == TextToSpeech.LANG_NOT_SUPPORTED) {
-            Log.w(TAG, "Default locale not available, use English.");
-            locale = Locale.ENGLISH;
-            /*
-             * TODO: instead of using english, load the language if missing and show a toast if not supported.
-             *  Not able to change the resource strings to English.
-             */
-
-            //Potentially set status to 0
+            Log.w(TAG, "Default locale not available, attempting to load.");
+            // Attempt to load the missing language
+            int resultCode = tts.setLanguage(locale);
+            if (resultCode == TextToSpeech.LANG_MISSING_DATA) {
+                // Language data is missing, handle accordingly
+                Toast.makeText(context.getApplicationContext(), "Language data is missing for the selected language.", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Language is not supported, handle accordingly
+                Toast.makeText(context.getApplicationContext(), "The selected language is not supported by TextToSpeech.", Toast.LENGTH_SHORT).show();
+                // Fallback to English
+                locale = Locale.ENGLISH;
+                tts.setLanguage(locale);
+            }
         }
-        tts.setLanguage(locale);  //set method in android sdk
-        tts.setSpeechRate(PreferencesUtils.getVoiceSpeedRate()); // Set speech rate output based on app preferences (set by user)
-        // track the progress of the TTS utterance,and to perform certain actions
-        // when specific events in the lifecycle of an utterance occur.
+        tts.setSpeechRate(PreferencesUtils.getVoiceSpeedRate());
         tts.setOnUtteranceProgressListener(utteranceListener);
     }
+
 }
 
 //Write a method that converts text to speech
