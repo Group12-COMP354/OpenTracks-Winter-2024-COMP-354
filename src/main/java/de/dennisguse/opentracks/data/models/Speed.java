@@ -91,7 +91,6 @@ public record Speed(double speed_mps) {
         return Duration.ofSeconds(Math.round(1 / distance));
     }
 
-
     public double to(UnitSystem unitSystem) {
         return switch (unitSystem) {
             case METRIC -> toKMH();
@@ -99,6 +98,4 @@ public record Speed(double speed_mps) {
             case NAUTICAL_IMPERIAL -> toKnots();
         };
     }
-
-
 }
