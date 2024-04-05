@@ -46,7 +46,8 @@ import de.dennisguse.opentracks.settings.PreferencesUtils; // A custom class tha
 
 
 public class TTSManager extends AppCompatActivity {
-
+    private FloatingActionButton run;
+    private ImageView finish;
     public final static int AUDIO_STREAM = TextToSpeech.Engine.DEFAULT_STREAM;
     // TextToSpeech: class part of the Android SDK used to convert tts
     // Engine is an inner class of TextToSpeech
@@ -76,8 +77,7 @@ public class TTSManager extends AppCompatActivity {
             // _LOSS_TRANSIENT : Temporary loss of audio focus
             // ''_CAN_DUCK : Lowers the volume of the media player (if another app is playing for example)
 
-            boolean stop = List.of(AudioManager.AUDIOFOCUS_LOSS, AudioManager.AUDIOFOCUS_LOSS_TRANSIENT, AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK)
-                    .contains(focusChange); // checking the state of 'focusChange' parameter
+            boolean stop = List.of(AudioManager.AUDIOFOCUS_LOSS, AudioManager.AUDIOFOCUS_LOSS_TRANSIENT, AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK).contains(focusChange); // checking the state of 'focusChange' parameter
 
             if (stop && tts != null && tts.isSpeaking()) {
 
@@ -157,21 +157,19 @@ public class TTSManager extends AppCompatActivity {
             if (ttsFallback == null) {
                 Log.w(TAG, "MediaPlayer for ttsFallback could not be created.");
             } else {
-                ttsFallback.setAudioAttributes(
-                        new AudioAttributes.Builder()
-                                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                                .build());
+                ttsFallback.setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build());
                 ttsFallback.setLooping(false);
             }
         }
     }
+
 
     public void announce(@NonNull Spannable announcement) { // parameter cannot be null
         synchronized (this) { // One announcement at a time
 
             if (!ttsReady) { // checking if ready to make an announcement
                 ttsReady = ttsInitStatus == TextToSpeech.SUCCESS;
-                ;
+
                 Log.d(TAG, "TTS initialized successfully.");
                 // Update the UI to indicate that TTS is ready.
                 if (ttsReady) {
@@ -180,8 +178,7 @@ public class TTSManager extends AppCompatActivity {
             }
         }
 
-        if (List.of(AudioManager.MODE_IN_CALL, AudioManager.MODE_IN_COMMUNICATION)
-                .contains(audioManager.getMode())) {
+        if (List.of(AudioManager.MODE_IN_CALL, AudioManager.MODE_IN_COMMUNICATION).contains(audioManager.getMode())) {
             Log.i(TAG, "Announcement is not allowed at this time.");
             return;
         }
@@ -215,43 +212,31 @@ public class TTSManager extends AppCompatActivity {
         }
     }
 
-//    void onTtsReady() {
-//        Locale locale = Locale.getDefault(); // Get default geolocation / region etc
-//        int languageAvailability = tts.isLanguageAvailable(locale); //Method in the TTS class :
-//        // checks is the engine can speak specified language
-//        if (languageAvailability == TextToSpeech.LANG_MISSING_DATA || languageAvailability == TextToSpeech.LANG_NOT_SUPPORTED) {
-//            Log.w(TAG, "Default locale not available, use English.");
-//            locale = Locale.ENGLISH;
-//
-//
-//        }
-//        tts.setLanguage(locale);  //set method in android sdk
-//        tts.setSpeechRate(PreferencesUtils.getVoiceSpeedRate()); // Set speech rate output based on app preferences (set by user)
-//        // track the progress of the TTS utterance,and to perform certain actions
-//        // when specific events in the lifecycle of an utterance occur.
-//        tts.setOnUtteranceProgressListener(utteranceListener);
-//
-//
-//    }
 
-    //method is where you initialize your activity, set up the user interface,
-    // and perform any other necessary setup tasks.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Call onTtsReady for initialization
+        Log.d(TAG, "onCreate method called"); // Add this log statement
+        setContentView(R.layout.track_recording); // Make sure to replace 'activity_main' with your layout file
+        setContentView(R.layout.track_stopped);
         onTtsReady();
+        // Other initialization code
     }
 
     void onTtsReady() {
-        //        setContentView(R.layout.track_stopped);
-        //        ImageView finish = findViewById(R.id.finish_button);
+        run = findViewById(R.id.track_recording_fab_action);
+        // Call onTtsReady for initialization
 
 
-// Set the content view of the activity to the layout defined in 'track_recording.xml'
-        setContentView(R.layout.track_recording);
+        // RUN METHOD
+        //  setContentView(R.layout.track_recording);
         // Find the FloatingActionButton with the id 'track_recording_fab_action' in the layout
-        FloatingActionButton run = findViewById(R.id.track_recording_fab_action);
+//        FloatingActionButton run = findViewById(R.id.track_recording_fab_action);
+
+        //RECORDING
+
+//        setContentView(R.layout.track_stopped);
+        finish = findViewById(R.id.resume_button);
 
         if (run != null) {
             // Initialize TextToSpeech instance with the application context
@@ -280,7 +265,40 @@ public class TTSManager extends AppCompatActivity {
                                 tts.speak(speech, TextToSpeech.QUEUE_FLUSH, null, null);
                             }
                         });
-                    }else {
+                    } else {
+                        // If language other than English is selected, show a toast notification
+                        Toast.makeText(getApplicationContext(), "Please note: Selected language may not be fully supported.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } else if (finish != null) {
+            // Initialize TextToSpeech instance with the application context
+            tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int ttsInitStatus) {
+                    // Get the default locale of the device
+                    Locale locale = Locale.getDefault();
+                    int languageAvailability = tts.isLanguageAvailable(locale);
+                    if (languageAvailability == TextToSpeech.LANG_MISSING_DATA || languageAvailability == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.w(TAG, "Default locale not available, use English.");
+                        // Set TextToSpeech language to English
+                        locale = Locale.ENGLISH;
+                        tts.setLanguage(locale);
+                        // Set speech rate according to user preferences
+                        tts.setSpeechRate(PreferencesUtils.getVoiceSpeedRate());
+                        tts.setOnUtteranceProgressListener(utteranceListener);
+
+                        // Set OnClickListener for FloatingActionButton 'run'
+                        finish.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                //Triggers the speaking FloatingActionButton is clicked
+                                String speech = "Hello User!";
+                                tts.speak(speech, TextToSpeech.QUEUE_FLUSH, null, null);
+                            }
+                        });
+                    } else {
                         // If language other than English is selected, show a toast notification
                         Toast.makeText(getApplicationContext(), "Please note: Selected language may not be fully supported.", Toast.LENGTH_SHORT).show();
                     }
@@ -292,14 +310,9 @@ public class TTSManager extends AppCompatActivity {
         }
 
 
-
-
-
     }
 
 }
 
 
 
-//Write a method that converts text to speech
-//
