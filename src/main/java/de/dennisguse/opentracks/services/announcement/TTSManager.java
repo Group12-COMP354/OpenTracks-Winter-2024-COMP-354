@@ -180,7 +180,8 @@ public class TTSManager extends AppCompatActivity {
                 // Update the UI to indicate that TTS is ready.
                 if (ttsReady) {
                     Log.d(TAG, "Inside ttsReady true");
-//                    onCreate(null);
+//                    Bundle tempBundle = new Bundle();
+//                    onCreate(tempBundle);
                     onTtsReady(run);
                 }
             }
@@ -265,6 +266,7 @@ public class TTSManager extends AppCompatActivity {
         Log.i(TAG, "Inside onTtsReady()");
         if (run != null) {
             // Initialize TextToSpeech instance with the application context
+            Button finalRun = run;
             tts = new TextToSpeech(getApplicationContext(), status -> {
                 Log.i(TAG, "TextToSpeech initialized with status " + status);
                 if (status == TextToSpeech.SUCCESS) {
@@ -278,13 +280,23 @@ public class TTSManager extends AppCompatActivity {
                     tts.setLanguage(locale);
                     tts.setSpeechRate(PreferencesUtils.getVoiceSpeedRate()); // Set speech rate based on user preferences
                     tts.setOnUtteranceProgressListener(utteranceListener);
-                    setupButtonToSpeak(run); // Set up the button to trigger TTS
+                    setupButtonToSpeak(finalRun); // Set up the button to trigger TTS
                 } else {
                     Log.e(TAG, "Initialization of TextToSpeech failed!");
                 }
             });
         } else {
             Log.e(TAG, "FloatingActionButton not found");
+            setContentView(R.layout.track_recording);
+            Log.d(TAG, "Layout set");
+
+            run = findViewById(R.id.track_recording_fab_action);
+            if (run == null) {
+                Log.e(TAG, "FloatingActionButton not found. Check your layout file.");
+            } else {
+                Log.d(TAG, "FloatingActionButton found. Setting up.");
+                setupButtonToSpeak(run);
+            }
         }
     }
 
