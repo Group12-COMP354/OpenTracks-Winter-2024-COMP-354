@@ -22,6 +22,7 @@ import android.media.AudioManager; // Provides access to the system volume contr
 import android.media.MediaPlayer; // Provides a way to control playback of audio files/streams
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.speech.tts.TextToSpeech; // Convert text to speech
@@ -181,7 +182,7 @@ public class TTSManager extends AppCompatActivity {
                 if (ttsReady) {
                     Log.d(TAG, "Inside ttsReady true");
 //                    Bundle tempBundle = new Bundle();
-//                    onCreate(tempBundle);
+                    //onCreate(null);
                     onTtsReady(run);
                 }
             }
@@ -244,8 +245,9 @@ public class TTSManager extends AppCompatActivity {
     //method is where you initialize your activity, set up the user interface,
     // and perform any other necessary setup tasks.
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "Inside onCreate()");
         setContentView(R.layout.track_recording);
         Log.d(TAG, "Layout set");
 
@@ -287,16 +289,6 @@ public class TTSManager extends AppCompatActivity {
             });
         } else {
             Log.e(TAG, "FloatingActionButton not found");
-            setContentView(R.layout.track_recording);
-            Log.d(TAG, "Layout set");
-
-            run = findViewById(R.id.track_recording_fab_action);
-            if (run == null) {
-                Log.e(TAG, "FloatingActionButton not found. Check your layout file.");
-            } else {
-                Log.d(TAG, "FloatingActionButton found. Setting up.");
-                setupButtonToSpeak(run);
-            }
         }
     }
 
