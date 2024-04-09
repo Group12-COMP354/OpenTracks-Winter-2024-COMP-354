@@ -380,6 +380,12 @@ limitations under the License.
     <string name="settings_announcements_statistics_title">Statistics Announcements</string>
     <string name="settings_announcements_summary">Time, Distance, Voice Speed</string>
 
+    <string name="settings_ski_announcements_statistics_title">Ski Statistics Announcements</string>
+    <string name="settings_ski_announcements_summary">Slope, Skiing time, Waiting time, Temperature</string>
+
+    <string name="settings_ski_announcements_recording_statistics_title">Ski Recording Announcements</string>
+    <string name="settings_ski_announcements_run_statistics_title">Ski Run Announcements</string>
+
     <string name="settings_import_export_title">Import/Export</string>
     <string name="settings_import_export_summary">Import, Export, Auto Export</string>
 
@@ -441,12 +447,6 @@ limitations under the License.
     <string name="settings_announcements_lap_heart_rate">Lap heart rate</string>
     <string name="settings_announcements_average_speed_pace">Average speed/pace</string>
     <string name="settings_announcements_lap_speed_pace">Lap speed/pace</string>
-    <string name="settings_announcements_max_speed_pace">Max speed/pace</string>
-    <string name="settings_announcements_average_slope">Average slope</string>
-    <string name="settings_announcements_max_slope">Max slope</string>
-    <string name="settings_announcements_total_skiing_time">Total skiing time</string>
-    <string name="settings_announcements_total_waiting_time">Total waiting time</string>
-    <string name="settings_announcements_temperature">Temperature</string>
 
     <string name="settings_maintenance_info_title">Maintenance Set Up and Information</string>
     <string name="settings_maintenance_sharp_title">Sharpening Information</string>
@@ -751,6 +751,7 @@ limitations under the License.
     </string>
     <string name="waiting_time">Total waiting time</string>
     <string name="skiing_time">Total skiing time</string>
+    <string name="local_temperature">Temperature</string>
     <!-- Waypoint Type -->
     <string name="waypoint_type_atm">ATM</string>
     <string name="waypoint_type_bank">bank</string>

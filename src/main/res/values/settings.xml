@@ -24,6 +24,7 @@
     <string name="settings_sensors_key" translatable="false">settingsSensorsGps</string>
 
     <string name="settings_announcements_key" translatable="false">settingsAnnouncements</string>
+    <string name="settings_ski_announcements_key" translatable="false">settingsSkiAnnouncements</string>
 
     <string name="settings_import_export_key" translatable="false">settingsImportExport</string>
 
@@ -271,6 +272,13 @@
     <bool name="voice_announce_total_skiing_time_default" translatable="false">true</bool>
     <string name="voice_announce_total_waiting_time_key" translatable="false">voiceAnnounceTotalWaitingTime</string>
     <bool name="voice_announce_total_waiting_time_default" translatable="false">false</bool>
+
+    <string name="voice_announce_ski_run_average_speed_pace_key" translatable="false">voiceAnnounceSkiRunAverageSpeedPace</string>
+    <bool name="voice_announce_ski_run_average_speed_pace_default" translatable="false">true</bool>
+    <string name="voice_announce_ski_run_average_slope_key" translatable="false">voiceAnnounceSkiRunAverageSlope</string>
+    <bool name="voice_announce_ski_run_average_slope_default" translatable="false">true</bool>
+    <string name="voice_announce_ski_run_max_speed_pace_key" translatable="false">voiceAnnounceSkiRunMaxSpeedPace</string>
+    <bool name="voice_announce_ski_run_max_speed_pace_default" translatable="false">false</bool>
 
     <string name="voice_announce_local_temperature_key" translatable="false">voiceAnnounceLocalTemperature</string>
     <bool name="voice_announce_local_temperature_default" translatable="false">false</bool>

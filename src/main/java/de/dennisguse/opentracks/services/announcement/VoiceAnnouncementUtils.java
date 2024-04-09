@@ -171,35 +171,35 @@ class VoiceAnnouncementUtils {
             builder.append(".");
         }
 
-        Slope averageSlope = trackStatistics.getSlope();
-        if (averageSlope != null){
-            String template = context.getResources().getString(slopeId);
-            if (shouldVoiceAnnounceAverageSlope()){
-                double averageSlopeInUnit = averageSlope.to();
-                builder.append(" ")
-                        .append(context.getString(R.string.slope));
-                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", averageSlopeInUnit)), averageSlopeInUnit, 1, unitSlopeTTS);
-                builder.append(".");
-            }
-            if (shouldVoiceAnnounceMaxSlope()){
-                Slope maxSlope = trackStatistics.getMaxSlope();
-                double maxSlopeInUnit = maxSlope.to();
-                builder.append(" ")
-                        .append(context.getString(R.string.max_slope));
-                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", maxSlopeInUnit)), maxSlopeInUnit, 1, unitSlopeTTS);
-                builder.append(".");
-            }
-            if (shouldVoiceAnnounceTotalSkiingTime()) {
-                Duration skiingTime = trackStatistics.getSkiingTime();
-                appendDuration(context, builder, skiingTime);
-                builder.append(".");
-            }
-            if (shouldVoiceAnnounceTotalWaitingTime()) {
-                Duration waitingTime = trackStatistics.getWaitingTime();
-                appendDuration(context, builder, waitingTime);
-                builder.append(".");
-            }
-        }
+//         Slope averageSlope = trackStatistics.getSlope();
+//        if (averageSlope != null){
+//            String template = context.getResources().getString(slopeId);
+//            if (shouldVoiceAnnounceAverageSlope()){
+//                double averageSlopeInUnit = averageSlope.to();
+//                builder.append(" ")
+//                        .append(context.getString(R.string.slope));
+//                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", averageSlopeInUnit)), averageSlopeInUnit, 1, unitSlopeTTS);
+//                builder.append(".");
+//            }
+//            if (shouldVoiceAnnounceMaxSlope()){
+//                Slope maxSlope = trackStatistics.getMaxSlope();
+//                double maxSlopeInUnit = maxSlope.to();
+//                builder.append(" ")
+//                        .append(context.getString(R.string.max_slope));
+//                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", maxSlopeInUnit)), maxSlopeInUnit, 1, unitSlopeTTS);
+//                builder.append(".");
+//            }
+//            if (shouldVoiceAnnounceTotalSkiingTime()) {
+//                Duration skiingTime = trackStatistics.getSkiingTime();
+//                appendDuration(context, builder, skiingTime);
+//                builder.append(".");
+//            }
+//            if (shouldVoiceAnnounceTotalWaitingTime()) {
+//                Duration waitingTime = trackStatistics.getWaitingTime();
+//                appendDuration(context, builder, waitingTime);
+//                builder.append(".");
+//            }
+//        }
 
         return builder;
     }

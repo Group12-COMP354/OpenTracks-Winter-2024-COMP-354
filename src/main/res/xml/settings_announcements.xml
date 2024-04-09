@@ -68,6 +68,12 @@
             android:defaultValue="@bool/voice_announce_lap_heart_rate_default"
             android:key="@string/voice_announce_lap_heart_rate_key"
             android:title="@string/settings_announcements_lap_heart_rate" />
+
+        <Preference
+            android:key="@string/settings_ski_announcements_key"
+            android:summary="@string/settings_ski_announcements_summary"
+            android:title="@string/settings_ski_announcements_statistics_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
