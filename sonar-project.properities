@@ -1,0 +1,3 @@
+sonar.projectkey=gradle
+sonar.organization=devopshint
+sonar.source=.
