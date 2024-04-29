@@ -440,6 +440,60 @@ public class PreferencesUtils {
         setBoolean(R.string.voice_announce_average_heart_rate_key, value);
     }
 
+    public static boolean shouldVoiceAnnounceMaxSpeedPace() {
+        return getBoolean(R.string.voice_announce_max_speed_pace_key, true);
+    }
+
+    @VisibleForTesting
+    public static void setVoiceAnnounceMaxSpeedPace(boolean value) {
+        setBoolean(R.string.voice_announce_max_speed_pace_key, value);
+    }
+
+    public static boolean shouldVoiceAnnounceAverageSlope() {
+        return getBoolean(R.string.voice_announce_average_slope_key, false);
+    }
+
+    @VisibleForTesting
+    public static void setVoiceAnnounceAverageSlope(boolean value) {
+        setBoolean(R.string.voice_announce_average_slope_key, value);
+    }
+
+    public static boolean shouldVoiceAnnounceMaxSlope() {
+        return getBoolean(R.string.voice_announce_max_slope_key, false);
+    }
+
+    @VisibleForTesting
+    public static void setVoiceAnnounceMaxSlope(boolean value) {
+        setBoolean(R.string.voice_announce_max_slope_key, value);
+    }
+
+    public static boolean shouldVoiceAnnounceTotalSkiingTime() {
+        return getBoolean(R.string.voice_announce_total_skiing_time_key, false);
+    }
+
+    @VisibleForTesting
+    public static void setVoiceAnnounceTotalSkiingTime(boolean value) {
+        setBoolean(R.string.voice_announce_total_skiing_time_key, value);
+    }
+
+    public static boolean shouldVoiceAnnounceTotalWaitingTime() {
+        return getBoolean(R.string.voice_announce_total_waiting_time_key, false);
+    }
+
+    @VisibleForTesting
+    public static void setVoiceAnnounceTotalWaitingTime(boolean value) {
+        setBoolean(R.string.voice_announce_total_waiting_time_key, value);
+    }
+
+    public static boolean shouldVoiceAnnounceLocalTemperature() {
+        return getBoolean(R.string.voice_announce_local_temperature_key, false);
+    }
+
+    @VisibleForTesting
+    public static void setVoiceAnnounceLocalTemperature(boolean value) {
+        setBoolean(R.string.voice_announce_local_temperature_key, value);
+    }
+
     public static Distance getRecordingDistanceInterval() {
         return Distance.of(getInt(R.string.recording_distance_interval_key, getRecordingDistanceIntervalDefaultInternal()));
     }

@@ -2,11 +2,16 @@ package de.dennisguse.opentracks.services.announcement;
 
 import static android.text.Spanned.SPAN_INCLUSIVE_EXCLUSIVE;
 import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceAverageHeartRate;
+import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceAverageSlope;
 import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceAverageSpeedPace;
 import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceLapHeartRate;
 import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceLapSpeedPace;
+import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceMaxSlope;
+import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceMaxSpeedPace;
 import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceMovingTime;
 import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceTotalDistance;
+import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceTotalSkiingTime;
+import static de.dennisguse.opentracks.settings.PreferencesUtils.shouldVoiceAnnounceTotalWaitingTime;
 
 import android.content.Context;
 import android.icu.text.MessageFormat;
@@ -49,8 +54,10 @@ class VoiceAnnouncementUtils {
         int perUnitStringId;
         int distanceId;
         int speedId;
+        int slopeId = R.string.voiceSlopePercentage;
         String unitDistanceTTS;
         String unitSpeedTTS;
+        String unitSlopeTTS = "percent";
         switch (unitSystem) {
             case METRIC -> {
                 perUnitStringId = R.string.voice_per_kilometer;
@@ -93,6 +100,7 @@ class VoiceAnnouncementUtils {
         }
 
         // Announce time
+        // should somehow check for ski activity
         Duration movingTime = trackStatistics.getMovingTime();
         if (shouldVoiceAnnounceMovingTime() && !movingTime.isZero()) {
             appendDuration(context, builder, movingTime);
@@ -117,6 +125,15 @@ class VoiceAnnouncementUtils {
                     appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", currentDistancePerTimeInUnit)), currentDistancePerTimeInUnit, 1, unitSpeedTTS);
                     builder.append(".");
                 }
+            }
+            if (shouldVoiceAnnounceMaxSpeedPace()) {
+                Speed maxSpeed = trackStatistics.getMaxSpeed();
+                double maxSpeedInUnit = maxSpeed.to(unitSystem);
+                builder.append(" ")
+                        .append(context.getString(R.string.max_speed));
+                String template = context.getResources().getString(speedId);
+                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", maxSpeedInUnit)),maxSpeedInUnit, 1, unitSpeedTTS);
+                builder.append(".");
             }
         } else {
             if (shouldVoiceAnnounceAverageSpeedPace()) {
@@ -156,6 +173,36 @@ class VoiceAnnouncementUtils {
             appendCardinal(builder, context.getString(R.string.sensor_state_heart_rate_value, currentHeartRate), currentHeartRate);
             builder.append(".");
         }
+
+//         Slope averageSlope = trackStatistics.getSlope();
+//        if (averageSlope != null){
+//            String template = context.getResources().getString(slopeId);
+//            if (shouldVoiceAnnounceAverageSlope()){
+//                double averageSlopeInUnit = averageSlope.to();
+//                builder.append(" ")
+//                        .append(context.getString(R.string.slope));
+//                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", averageSlopeInUnit)), averageSlopeInUnit, 1, unitSlopeTTS);
+//                builder.append(".");
+//            }
+//            if (shouldVoiceAnnounceMaxSlope()){
+//                Slope maxSlope = trackStatistics.getMaxSlope();
+//                double maxSlopeInUnit = maxSlope.to();
+//                builder.append(" ")
+//                        .append(context.getString(R.string.max_slope));
+//                appendDecimalUnit(builder, MessageFormat.format(template, Map.of("n", maxSlopeInUnit)), maxSlopeInUnit, 1, unitSlopeTTS);
+//                builder.append(".");
+//            }
+//            if (shouldVoiceAnnounceTotalSkiingTime()) {
+//                Duration skiingTime = trackStatistics.getSkiingTime();
+//                appendDuration(context, builder, skiingTime);
+//                builder.append(".");
+//            }
+//            if (shouldVoiceAnnounceTotalWaitingTime()) {
+//                Duration waitingTime = trackStatistics.getWaitingTime();
+//                appendDuration(context, builder, waitingTime);
+//                builder.append(".");
+//            }
+//        }
 
         return builder;
     }

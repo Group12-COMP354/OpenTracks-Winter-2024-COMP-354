@@ -15,11 +15,16 @@
 
     <string name="settings_ui_key" translatable="false">settingsUI</string>
 
+    <string name="settings_user_profile_key" translateable="false">settingsUserProfile</string>
+
+    <string name="settings_ski_profile_key" translatable="false">settingsSkiProfile</string>
+
     <string name="settings_gps_key" translatable="false">settingsGps</string>
 
     <string name="settings_sensors_key" translatable="false">settingsSensorsGps</string>
 
     <string name="settings_announcements_key" translatable="false">settingsAnnouncements</string>
+    <string name="settings_ski_announcements_key" translatable="false">settingsSkiAnnouncements</string>
 
     <string name="settings_import_export_key" translatable="false">settingsImportExport</string>
 
@@ -251,10 +256,32 @@
     <string name="voice_announce_lap_speed_pace_key" translatable="false">voiceAnnounceLapSpeedPace</string>
     <bool name="voice_announce_lap_speed_pace_default" translatable="false">true</bool>
 
+    <string name="voice_announce_max_speed_pace_key" translatable="false">voiceAnnounceAverageSlope</string>
+    <bool name="voice_announce_max_speed_pace_default" translatable="false">false</bool>
+
     <string name="voice_announce_average_heart_rate_key" translatable="false">voiceAnnounceAverageHeartRate</string>
     <bool name="voice_announce_average_heart_rate_default" translatable="false">false</bool>
     <string name="voice_announce_lap_heart_rate_key" translatable="false">voiceAnnounceLapHeartRate</string>
     <bool name="voice_announce_lap_heart_rate_default" translatable="false">false</bool>
+
+    <string name="voice_announce_average_slope_key" translatable="false">voiceAnnounceAverageSlope</string>
+    <bool name="voice_announce_average_slope_default" translatable="false">true</bool>
+    <string name="voice_announce_max_slope_key" translatable="false">voiceAnnounceMaxSlope</string>
+    <bool name="voice_announce_max_slope_default" translatable="false">false</bool>
+    <string name="voice_announce_total_skiing_time_key" translatable="false">voiceAnnounceTotalSkiingTime</string>
+    <bool name="voice_announce_total_skiing_time_default" translatable="false">true</bool>
+    <string name="voice_announce_total_waiting_time_key" translatable="false">voiceAnnounceTotalWaitingTime</string>
+    <bool name="voice_announce_total_waiting_time_default" translatable="false">false</bool>
+
+    <string name="voice_announce_ski_run_average_speed_pace_key" translatable="false">voiceAnnounceSkiRunAverageSpeedPace</string>
+    <bool name="voice_announce_ski_run_average_speed_pace_default" translatable="false">true</bool>
+    <string name="voice_announce_ski_run_average_slope_key" translatable="false">voiceAnnounceSkiRunAverageSlope</string>
+    <bool name="voice_announce_ski_run_average_slope_default" translatable="false">true</bool>
+    <string name="voice_announce_ski_run_max_speed_pace_key" translatable="false">voiceAnnounceSkiRunMaxSpeedPace</string>
+    <bool name="voice_announce_ski_run_max_speed_pace_default" translatable="false">false</bool>
+
+    <string name="voice_announce_local_temperature_key" translatable="false">voiceAnnounceLocalTemperature</string>
+    <bool name="voice_announce_local_temperature_default" translatable="false">false</bool>
 
     <string name="export_trackfileformat_key" translatable="false">exportTrackFileFormat</string>
     <!-- See TrackFileFormat -->
@@ -269,6 +296,10 @@
     <bool name="publicapi_enabled_default">false</bool>
     <string name="publicapi_dashboard_enabled_key" translatable="false">apiDashboardEnabledKey</string>
     <bool name="publicapi_dashboard_enabled_default">false</bool>
+
+    <!--Group 2 -->
+    <string name="settings_maintenance_info_key" translatable="false">maintenance_info_key</string>
+
 
     <string name="show_introduction_screen_key" translatable="false">showIntroduction</string>
     <bool name="show_introduction_screen_default">true</bool>

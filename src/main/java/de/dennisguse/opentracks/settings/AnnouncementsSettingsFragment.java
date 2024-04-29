@@ -12,6 +12,11 @@ public class AnnouncementsSettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.settings_announcements);
+
+        findPreference(getString(R.string.settings_ski_announcements_key)).setOnPreferenceClickListener(preference -> {
+            ((SettingsActivity) getActivity()).openScreen(getString(R.string.settings_ski_announcements_key));
+            return true;
+        });
     }
 
     @Override
