@@ -467,22 +467,22 @@ public class PreferencesUtils {
         setBoolean(R.string.voice_announce_max_slope_key, value);
     }
 
-    public static boolean shouldVoiceAnnounceTotalTimeSkiing() {
-        return getBoolean(R.string.voice_announce_total_time_skiing_key, false);
+    public static boolean shouldVoiceAnnounceTotalSkiingTime() {
+        return getBoolean(R.string.voice_announce_total_skiing_time_key, false);
     }
 
     @VisibleForTesting
-    public static void setVoiceAnnounceTotalTimeSkiing(boolean value) {
-        setBoolean(R.string.voice_announce_total_time_skiing_key, value);
+    public static void setVoiceAnnounceTotalSkiingTime(boolean value) {
+        setBoolean(R.string.voice_announce_total_skiing_time_key, value);
     }
 
-    public static boolean shouldVoiceAnnounceTotalTimeWaiting() {
-        return getBoolean(R.string.voice_announce_total_time_waiting_key, false);
+    public static boolean shouldVoiceAnnounceTotalWaitingTime() {
+        return getBoolean(R.string.voice_announce_total_waiting_time_key, false);
     }
 
     @VisibleForTesting
-    public static void setVoiceAnnounceTotalTimeWaiting(boolean value) {
-        setBoolean(R.string.voice_announce_total_time_waiting_key, value);
+    public static void setVoiceAnnounceTotalWaitingTime(boolean value) {
+        setBoolean(R.string.voice_announce_total_waiting_time_key, value);
     }
 
     public static boolean shouldVoiceAnnounceLocalTemperature() {
