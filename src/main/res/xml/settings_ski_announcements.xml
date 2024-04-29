@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/settings_announcements_statistics_title">
+    android:title="@string/settings_ski_announcements_statistics_title">
 
     <PreferenceCategory android:title="@string/settings_ski_announcements_recording_statistics_title">
         <SwitchPreferenceCompat
