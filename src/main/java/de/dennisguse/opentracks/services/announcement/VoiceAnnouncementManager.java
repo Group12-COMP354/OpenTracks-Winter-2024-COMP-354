@@ -155,8 +155,37 @@ public class VoiceAnnouncementManager implements SharedPreferences.OnSharedPrefe
             sensorStatistics = contentProviderUtils.getSensorStats(track.getId());
         }
 
+        if (announcementType == AnnouncementType.RECORDING_COMPLETED) {
+            // Create announcement for after recording
+            return VoiceAnnouncementUtils.createRecordingStatistics(context, track.getTrackStatistics(), PreferencesUtils.getUnitSystem(), PreferencesUtils.isReportSpeed(track), lastInterval, sensorStatistics);
+        } else if (announcementType == AnnouncementType.RUN_COMPLETED) {
+            // Create announcement for after the run
+            return VoiceAnnouncementUtils.createRunStatistics(context, track.getTrackStatistics(), PreferencesUtils.getUnitSystem(), PreferencesUtils.isReportSpeed(track), lastInterval, sensorStatistics);
+        } else {
+            // Default or interval announcement
+            return VoiceAnnouncementUtils.createStatistics(context, track.getTrackStatistics(), PreferencesUtils.getUnitSystem(), PreferencesUtils.isReportSpeed(track), lastInterval, sensorStatistics);
+        }
+
+
         return VoiceAnnouncementUtils.createStatistics(context, track.getTrackStatistics(), PreferencesUtils.getUnitSystem(), PreferencesUtils.isReportSpeed(track), lastInterval, sensorStatistics);
+        return VoiceAnnouncementUtils.createStatistics(context, track.getTrackStatistics(), PreferencesUtils.getUnitSystem(), PreferencesUtils.isReportSpeed(track), lastInterval, sensorStatistics);
+
     }
+
+    public enum AnnouncementType {
+        DEFAULT, // Default announcement
+        RECORDING_COMPLETED, // Announcement after recording is completed
+        RUN_COMPLETED // Announcement after the run is completed
+    }
+
+    // For default interval announcement, to specify which type should rune
+    Spannable intervalAnnouncement = createAnnouncement(track, AnnouncementType.DEFAULT);
+
+    // For announcement after recording is completed
+    Spannable recordingAnnouncement = createAnnouncement(track, AnnouncementType.RECORDING_COMPLETED);
+
+    // For announcement after the run is completed
+    Spannable runCompletedAnnouncement = createAnnouncement(track, AnnouncementType.RUN_COMPLETED);
 
     public void stop() {
         if (voiceAnnouncement != null) {

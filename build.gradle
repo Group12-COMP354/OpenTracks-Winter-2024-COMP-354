@@ -1,13 +1,35 @@
 apply plugin: 'com.android.application'
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Project"
+        property "sonar.projectKey", "com.example.myproject"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.language", "java"
+        property "sonar.sources", "src/main/"
+        property "sonar.login", "username"
+        property "sonar.password", "password"
+    }
+}
 
 buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath 'com.android.tools.build:gradle:8.3.1'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:5.0.0.4638"
     }
+}
+
+ext {
+    compileSdkVersion = 34
+    compileSdkVersion1 = compileSdkVersion
 }
 
 allprojects {
@@ -50,8 +72,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-
-    compileSdk 34
+    compileSdkVersion compileSdkVersion1
 
     buildFeatures {
         viewBinding true
@@ -110,6 +131,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    buildToolsVersion '35.0.0 rc2'
 
     applicationVariants.configureEach { variant ->
         variant.resValue "string", "applicationId", variant.applicationId
@@ -145,4 +167,11 @@ dependencies {
     androidTestImplementation 'org.mockito:mockito-android:5.8.0'
 
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
+}
+
+if (hasProperty('buildScan')) {
+    buildScan {
+        termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+        termsOfServiceAgree = 'yes'
+    }
 }
